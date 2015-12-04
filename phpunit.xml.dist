@@ -12,7 +12,7 @@
          bootstrap="vendor/autoload.php"
 >
     <testsuites>
-        <testsuite name="JQueryAjaxBundle Test">
+        <testsuite name="JQueryAjaxBundleEnx Test">
             <directory>./Tests/</directory>
         </testsuite>
     </testsuites>

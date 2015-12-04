@@ -1,21 +1,14 @@
-# JQueryAjaxBundle  [![SensioLabsInsight](https://insight.sensiolabs.com/projects/a735dceb-683c-4195-bd27-af676ca50a05/small.png)](https://insight.sensiolabs.com/projects/a735dceb-683c-4195-bd27-af676ca50a05)
-------------------
-
-[![Build Status](https://travis-ci.org/KnpLabs/KnpRadBundle.png?branch=develop)](https://travis-ci.org/kernel64/JQueryAjaxBundle)  [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kernel64/JQueryAjaxBundle/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kernel64/JQueryAjaxBundle/?branch=master)
-[![GitHub issues](https://img.shields.io/github/issues/kernel64/JQueryAjaxBundle.svg)](https://github.com/kernel64/JQueryAjaxBundle/issues)
-[![GitHub stars](https://img.shields.io/github/stars/kernel64/JQueryAjaxBundle.svg)](https://github.com/kernel64/JQueryAjaxBundle/stargazers)
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/kernel64/JQueryAjaxBundle/master/LICENSE)
-
-JQueryAjaxBundle for Symfony2.
+JQueryAjaxBundleEnx for Symfony2.
+fork of mabs/jquery-ajax-bundle
 
 ## Install
 To install this bundle on your project, add this line to composer.json file:
 
 ```json
-   "mabs/jquery-ajax-bundle": "~1.0"
+   "analyzer666/jquery-ajax-bundle-enx": "dev-master"
 ```
 
-This bundle add two Twig functions:
+This bundle add 3 Twig functions:
 
 
 ##1 - ja_request:
@@ -53,6 +46,7 @@ This bundle add two Twig functions:
 
   You can also use those parameters 'before' and 'after' to execute JS code.
 
+  ...to do...
 
 ##3 - License
 

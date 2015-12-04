@@ -11,6 +11,7 @@ env:
   - SYMFONY_VERSION=v2.5.0
   - SYMFONY_VERSION=v2.6.0
   - SYMFONY_VERSION=v2.7.0
+  - SYMFONY_VERSION=v2.8.0
 
 before_script: composer require --dev --no-interaction symfony/symfony:${SYMFONY_VERSION}
 script: phpunit --coverage-text
