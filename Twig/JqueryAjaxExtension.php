@@ -17,7 +17,7 @@ class JqueryAjaxExtension extends \Twig_Extension
                     'html'
                 )
             )),
-            new \Twig_SimpleFunction('ja_submit', $this->submitTag(), array(
+            new \Twig_SimpleFunction('ja_button', $this->buttonTag(), array(
                 'is_safe' => array(
                     'html'
                 )
@@ -136,34 +136,34 @@ class JqueryAjaxExtension extends \Twig_Extension
         };
     }
     
-     /**
-     * Generate submit button tag with js function to send ajax form
-     *
-     * @param array $options
-     */
-    public function submitTag($options = array())
+    public function buttonTag($options = array())
     {
-    	$jsSubmit = $this->submitCall();
-    
-    	return function ($options) use($jsSubmit)
-    	{
-    		$confirm = '';
-    		if (isset($options['confirm']) && $options['confirm'] === true) {
-    
-    			$msg = "Are you sure you want to perform this action?";
-    			if(isset($options['confirm_msg'])) {
-    				$msg = htmlentities(str_replace("'", '"', $options['confirm_msg']), ENT_QUOTES);
-    			}
-    			$confirm .= "if(confirm('".$msg."'))" ;
-    		}
-    		$html = '<button class="' . (isset($options['class']) ? $options['class'] : "") . '"
-    		id="' . (isset($options['id']) ? $options['id'] : "") . '"
-    		onclick="' .$confirm. call_user_func($jsSubmit, $options) . 'return false;">';
-    		$html .= $options['text'];
-    		$html .= '</button>';
-    
-    		return $html;
-    	};
+        $jsRequest = $this->remoteCall();
+        
+        return function ($options) use($jsRequest)
+        {
+            $confirm = '';
+            if (isset($options['confirm']) && $options['confirm'] == true) {
+                
+                $msg = "Are you sure you want to perform this action?";
+                if(isset($options['confirm_msg'])) {
+                    $msg = htmlentities(str_replace("'", '"', $options['confirm_msg']), ENT_QUOTES);                  
+                }
+                $confirm .= "if(confirm('".$msg."'))" ;
+            }
+            $html = '<button class="' . (isset($options['class']) ? $options['class'] : "") . '"
+                     id="' . (isset($options['id']) ? $options['id'] : "") . '"
+                     type="' . (isset($options['type']) ? $options['type'] : "submit") . '"' .
+                     (isset($options['data-toggle']) ? ' data-toggle="'.$options['data-toggle'].'"' : " ").
+                     (isset($options['data-target']) ? ' data-target="'.$options['data-target'].'"' : " ").
+                     (isset($options['data-dismiss']) ? ' data-dismiss="'.$options['data-dismiss'].'"' : " ").
+                     (isset($options['aria-label']) ? ' aria-label="'.$options['aria-label'].'"' : " ").'
+                     onclick="' .$confirm. call_user_func($jsRequest, $options) . 'return false;">';
+            $html .= $options['text'];
+            $html .= '</button>';
+            
+            return $html;
+        };
     }
 
     /**
