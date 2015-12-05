@@ -1,12 +1,12 @@
 <?php
-namespace SymBundle\JQueryAjaxBundleEnx\Twig;
+namespace SymBundle\JQueryAjaxEnxBundle\Twig;
 
 /**
  *
  * @author Nickolai Nedovodiev <analyzer666@gmail.com>
  *
  */
-class JqueryAjaxExtensionEnx extends \Twig_Extension
+class JqueryAjaxEnxExtension extends \Twig_Extension
 {
 
     public function getFunctions()
