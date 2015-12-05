@@ -1,5 +1,5 @@
 {
-    "name":         "analyzer666/jquery-ajax-bundle-enx",
+    "name":         "analyzer666/jquery-ajax-enx-bundle",
     "description":  "This bundle provides a Twig functions that generate js function to send ajax request.",
     "keywords":     ["jQyuery", "ajax", "twig", "symfony"],
     "type":         "symfony-bundle",
@@ -15,8 +15,8 @@
         "symfony/framework-bundle": "2.0 - 2.8"
     },
     "autoload": {
-        "psr-0": {"SymBundle\\JQueryAjaxBundleEnx": ""}
+        "psr-0": {"SymBundle\\JQueryAjaxEnxBundle": ""}
     },
-    "target-dir": "SymBundle/JQueryAjaxBundleEnx",
+    "target-dir": "SymBundle/JQueryAjaxEnxBundle",
     "minimum-stability": "dev"
 }
