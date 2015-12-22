@@ -33,7 +33,14 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
     /**
      * Generate Js function to send ajax request.
      *
-     * @param array $options            
+     * @param array $options
+     *    -$options['type']          : POST-GET
+     *    -$options['dataType']      : html-...
+     *    +$options['url']           : ajax url: "..."
+     *    -$options['before']        : ajax beforeSend: function(){"..."}
+     *    +$options['update']        : ajax success: function( data ){ "...").html(data)
+     *    -$options['after']         : 
+     *    -$options['complete']      : ajax complete: function(){"..."}
      */
     public function remoteCall($options = array())
     {
@@ -73,7 +80,13 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
      /**
      * Generate Js function to send ajax form data.
      *
-     * @param array $options            
+     * @param array $options
+     *    -$options['type']          : POST-GET
+     *    -$options['dataType']      : html-...
+     *    +$options['url']           : ajax url: "..."
+     *    -$options['before']        : ajax beforeSend: function(){"..."}
+     *    -$options['success']       : ajax success: function( data ){ "...").html(data)
+     *    -$options['after']         : 
      */
     public function submitCall($options = array())
     {
@@ -108,7 +121,13 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
     /**
      * Generate link tag with js function to send ajax request
      *
-     * @param array $options            
+     * @param array $options
+     *   -$options['confirm']        : true-false:
+     *   -$options['confirm_msg']    :
+     *   -$options['class']          : <a class="..."
+     *   -$options['id']             : <a id="..."
+     *   +$options['url']            : <a href="..."
+     *   +$options['text']           : <a>...</a>
      */
     public function linkTag($options = array())
     {
@@ -136,6 +155,21 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
         };
     }
     
+    /**
+     * Generate button tag with js function to send ajax request
+     *
+     * @param array $options
+     *   -$options['confirm']        : true-false:
+     *   -$options['confirm_msg']    :
+     *   -$options['class']          : <button class="..."
+     *   -$options['id']             : <button id="..."
+     *   -$options['type']           : <button type="..."
+     *   -$options['data-toggle']    : <button data-toggle="..."
+     *   -$options['data-target']    : <button data-target="..."
+     *   -$options['data-dismiss']   : <button data-dismiss="..."
+     *   -$options['aria-label']     : <button aria-label="..."
+     *   +$options['text']           : <button>...</button>
+     */
     public function buttonTag($options = array())
     {
         $jsRequest = $this->remoteCall();
