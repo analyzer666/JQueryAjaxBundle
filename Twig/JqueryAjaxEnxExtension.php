@@ -86,7 +86,7 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
      *    +$options['url']           : ajax url: "..."
      *    -$options['before']        : ajax beforeSend: function(){"..."}
      *    -$options['success']       : ajax success: function( data ){ "...").html(data)
-     *    -$options['after']         : 
+     *    -$options['after']         : js скрипт добавляется в конец success функции
      */
     public function submitCall($options = array())
     {
@@ -144,8 +144,8 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
                 }
             	$confirm .= "if(confirm('".$msg."'))" ;
             }
-            $html = '<a class="' . (isset($options['class']) ? $options['class'] : "") . '"
-    		 		 id="' . (isset($options['id']) ? $options['id'] : "") . '"
+            $html = '<a class="' . (isset($options['class']) ? $options['class'] : "") . '"'.
+                     (isset($options['id']) ? ' id="'.$options['id'].'" ' : " ").'
     		 		 href="' . $options['url'] . '"
     				 onclick="' .$confirm. call_user_func($jsRequest, $options) . 'return false;">';
             $html .= $options['text'];
@@ -185,8 +185,8 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
                 }
                 $confirm .= "if(confirm('".$msg."'))" ;
             }
-            $html = '<button class="' . (isset($options['class']) ? $options['class'] : "") . '"
-                     id="' . (isset($options['id']) ? $options['id'] : "") . '"
+            $html = '<button class="' . (isset($options['class']) ? $options['class'] : "") . '"'.
+                     (isset($options['id']) ? ' id="'.$options['id'].'" ' : " ").'
                      type="' . (isset($options['type']) ? $options['type'] : "submit") . '"' .
                      (isset($options['data-toggle']) ? ' data-toggle="'.$options['data-toggle'].'"' : " ").
                      (isset($options['data-target']) ? ' data-target="'.$options['data-target'].'"' : " ").
