@@ -34,13 +34,15 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
      * Generate Js function to send ajax request.
      *
      * @param array $options
-     *    -$options['type']          : POST-GET
-     *    -$options['dataType']      : html-...
-     *    +$options['url']           : ajax url: "..."
-     *    -$options['before']        : ajax beforeSend: function(){"..."}
-     *    +$options['update']        : ajax success: function( data ){ "...").html(data)
-     *    -$options['after']         : 
-     *    -$options['complete']      : ajax complete: function(){"..."}
+     *   ajax:
+     *    -$options['type']          : type: '...'; default - POST
+     *    -$options['dataType']      : dataType: '$dataType'; default - html 
+     *    +$options['url']           : url: "..."
+     *    -$options['before']        : beforeSend: function(){"..."}
+     *    +$options['update']        : success: function( data ){"...").html(data)
+     *    -$options['after']         : adding to the end of success:
+     *    -$options['complete']      : complete: function(){"..."}
+     *    -$options['loading']       : div id to show and hide. '#loading_div_id'
      */
     public function remoteCall($options = array())
     {
@@ -52,18 +54,30 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
 							type: '" . $type . "',
 							dataType: '" . $dataType . "',";
             
-            if (isset($options['before'])) {
-                $before = str_replace('"', "'", $options['before']);
-                $js .= "beforeSend: function(){" . $before . "},";
+            if (isset($options['before']) || (isset($options['loading']))) {
+                $js .= "beforeSend: function(){";
+                if (isset($options['before'])) {
+                    $before = str_replace('"', "'", $options['before']);
+                    $js .= $before;
+                }
+                if (isset($options['loading'])) {
+                    $js .= "$('#".$options['loading']."').show(); ";
+                }
+                $js .= "},";
             }
+
             
             $js .= "success: function( data ){ $('" . $options['update'] . "').html(data);";
-            
+
             if (isset($options['after'])) {
                 $after = str_replace('"', "'", $options['after']);
                 $js .= $after;
             }
             
+            if (isset($options['loading'])) {
+                $js .= "$('".$options['loading']."').hide(); ";
+            }
+
             $js .= "}";
             
             if (isset($options['complete'])) {
@@ -160,7 +174,7 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
      *
      * @param array $options
      *   -$options['confirm']        : true-false:
-     *   -$options['confirm_msg']    :
+     *   -$options['confirm_msg']    : message to confirm request
      *   -$options['class']          : <button class="..."
      *   -$options['id']             : <button id="..."
      *   -$options['type']           : <button type="..."
