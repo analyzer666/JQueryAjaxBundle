@@ -140,7 +140,7 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
      *   -$options['confirm_msg']    :
      *   -$options['class']          : <a class="..."
      *   -$options['id']             : <a id="..."
-     *   +$options['url']            : <a href="..."
+     *   +$options['href']           : <a href="..."
      *   +$options['text']           : <a>...</a>
      */
     public function linkTag($options = array())
@@ -160,7 +160,7 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
             }
             $html = '<a class="' . (isset($options['class']) ? $options['class'] : "") . '"'.
                      (isset($options['id']) ? ' id="'.$options['id'].'" ' : " ").'
-    		 		 href="' . $options['url'] . '"
+    		 		 href="' . $options['href'] . '"
     				 onclick="' .$confirm. call_user_func($jsRequest, $options) . 'return false;">';
             $html .= $options['text'];
             $html .= '</a>';
