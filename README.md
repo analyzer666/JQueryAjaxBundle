@@ -4,10 +4,9 @@ fork of mabs/jquery-ajax-bundle
 ## Install
 To install this bundle on your project, add this line to composer.json file:
 
-`
-json
-   "analyzer666/jquery-ajax-bundle-enx": "dev-master"
-`
+`json
+   "analyzer666/jquery-ajax-bundle-enx": "dev-master"`
+
 How to use:
 
   ...Prepare to use Ajax...
@@ -22,8 +21,8 @@ How to use:
         <div id="galleries" class="col-sm-12 col-md-12"></div>    
 
     3) CSS: Adding CSS styles to this div
-    `
-      #ajax-loading {  
+    
+    `#ajax-loading {  
           position:   fixed;
           z-index:    1000;
           top:        0;
@@ -41,18 +40,17 @@ How to use:
           margin-left: -32px; /* -1 * image width / 2 */
           margin-top: -32px;  /* -1 * image height / 2 */
           display: block;     
-      }
-`
-    Thats all preparing for client side.
+      }`
+Thats all preparing for client side.
 
-  On server side:
+On server side:
 
-  1) Controller: Making controller to get response
-`
-    /**
-     * @Route("/gallery/get/galleries/{category_id}", name="gallery_renderGalleries")
-     */
-    public function getGalleriesAction($category_id = null)
+1) Controller: Making controller to get response
+
+`/**
+  * @Route("/gallery/get/galleries/{category_id}", name="gallery_renderGalleries")
+  */
+ public function getGalleriesAction($category_id = null)
     {
         $selectedCategory = $this->getDoctrine()
             ->getRepository('AppBundle:GalleryCategory')
@@ -69,23 +67,23 @@ How to use:
         } elseif (count($galleries)==1) {
            return $this->getGalleryPhotosAction($galleries->first()->getId());
         }
-    }
-`
-    Thats all for server part.
+ }`
 
-  Lets use Ajax! Just insert into the twig this code:
-`
-  {{ ja_link({
+Thats all for server part.
+
+Lets use Ajax! Just insert into the twig this code:
+
+`{{ ja_link({
     'update': '#galleries', 
     'url': url('gallery_renderGalleries', {'category_id':category.id}), 
     'text': 'Gallery',
     'after': set_after,
     'loading': '#ajax-loading'
-  }) }}
-`
+  }) }}`
+
   this code get us working link to send ajax request. 
-`
-  <a href="http://127.0.0.1/aorig/app_dev.php/gallery/get/galleries/1"
+
+`<a href="http://127.0.0.1/aorig/app_dev.php/gallery/get/galleries/1"
      onclick="$.ajax({
       url: 'http://127.0.0.1/aorig/app_dev.php/gallery/get/galleries/1',
       type: 'POST',
@@ -95,8 +93,8 @@ How to use:
         $('#galleries').html(data); 
         $('#ajax-loading').hide(); }
       });
-      return false;">PhotoGallery</a>
-`
+      return false;">PhotoGallery</a>`
+
 This wirking example of using this plagin.
 
 This bundle add 3 Twig functions:
