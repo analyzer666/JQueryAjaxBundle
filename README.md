@@ -49,7 +49,8 @@ How to use:
 
   On server side:
 
-``` 1) Controller: Making controller to get response
+``` 
+  1) Controller: Making controller to get response
     /**
      * @Route("/gallery/get/galleries/{category_id}", name="gallery_renderGalleries")
      */
