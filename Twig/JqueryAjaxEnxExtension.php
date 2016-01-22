@@ -140,7 +140,7 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
      *   -$options['confirm_msg']    :
      *   -$options['class']          : <a class="..."
      *   -$options['id']             : <a id="..."
-     *   +$options['href']           : <a href="..."
+     *   -$options['href']           : <a href="..."
      *   +$options['text']           : <a>...</a>
      */
     public function linkTag($options = array())
@@ -157,6 +157,9 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
                     $msg = htmlentities(str_replace("'", '"', $options['confirm_msg']), ENT_QUOTES);                  
                 }
             	$confirm .= "if(confirm('".$msg."'))" ;
+            }
+            if (!isset($options['href'])) {
+                $options['href'] = "#" ;
             }
             $html = '<a class="' . (isset($options['class']) ? $options['class'] : "") . '"'.
                      (isset($options['id']) ? ' id="'.$options['id'].'" ' : " ").'
