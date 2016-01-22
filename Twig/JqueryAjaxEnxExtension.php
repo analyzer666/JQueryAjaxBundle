@@ -75,7 +75,7 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
             }
             
             if (isset($options['loading'])) {
-                $js .= "$('".$options['loading']."').hide(); ";
+                $js .= "$('#".$options['loading']."').hide(); ";
             }
 
             $js .= "}";
