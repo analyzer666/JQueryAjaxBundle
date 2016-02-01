@@ -66,6 +66,9 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
                 $js .= "},";
             }
 
+            if (isset($options['data'])) {
+                $js .= "data: ".$options['data'].",";
+            }
             
             $js .= "success: function( data ){ $('" . $options['update'] . "').html(data);";
 
