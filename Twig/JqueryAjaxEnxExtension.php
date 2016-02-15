@@ -43,6 +43,7 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
      *    -$options['after']         : adding to the end of success:
      *    -$options['complete']      : complete: function(){"..."}
      *    -$options['loading']       : div id to show and hide. '#loading_div_id'
+     *    -$options['data']          : data: ...; $(this.form.elements).serializeArray() for form submit
      */
     public function remoteCall($options = array())
     {
@@ -53,7 +54,7 @@ class JqueryAjaxEnxExtension extends \Twig_Extension
 							url: '" . $options['url'] . "',
 							type: '" . $type . "',
 							dataType: '" . $dataType . "',";
-            
+
             if (isset($options['before']) || (isset($options['loading']))) {
                 $js .= "beforeSend: function(){";
                 if (isset($options['before'])) {

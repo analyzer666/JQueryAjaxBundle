@@ -190,6 +190,8 @@ Options of button elements:
 	*   -$options['data-dismiss']   : <button data-dismiss="..."
 	*   -$options['aria-label']     : <button aria-label="..."
 	*   +$options['text']           : <button>...</button>
+    *   -$options['data']           : data: ...; 
+        $(this.form.elements).serializeArray() for form submit
 
 jQuery options same like in ja_link function:
 
